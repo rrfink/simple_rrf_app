@@ -13,36 +13,14 @@ workflows:
     environment:
       vars:
         FLUTTER_VERSION: "3.13.0"
-        APP_NAME: "RRF"
-        PACKAGE_NAME: "com.rrf.app"
-      groups:
-        - app-signing
-        - api-keys
-      flutter: stable
     scripts:
-      - name: Set up code signing settings
-        script: |
-          if [ -n "$CM_KEYSTORE" ]; then
-            echo "Setting up code signing..."
-            echo "$CM_KEYSTORE" | base64 --decode > keystore.jks
-            echo "storePassword=$CM_KEYSTORE_PASSWORD" > keystore.properties
-            echo "keyPassword=$CM_KEY_PASSWORD" >> keystore.properties
-            echo "keyAlias=$CM_KEY_ALIAS" >> keystore.properties
-          else
-            echo "No code signing required for debug builds"
-          fi
-      
       - name: Get Flutter packages
         script: |
           flutter packages pub get
       
       - name: Build APK
         script: |
-          if [ -n "$CM_KEYSTORE" ]; then
-            flutter build apk --release --build-number=$BUILD_NUMBER
-          else
-            flutter build apk --release
-          fi
+          flutter build apk --release
     
     artifacts:
       - build/app/outputs/flutter-apk/app-release.apk
