@@ -1,0 +1,36 @@
+workflows:
+  android-workflow:
+    name: Android Workflow
+    instance_type: mac_mini_m1
+    max_build_duration: 30
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+    environment:
+      vars:
+        FLUTTER_VERSION: "3.13.0"
+      flutter: stable
+    scripts:
+      - name: Set up code signing settings
+        script: |
+          echo "No code signing required for debug builds"
+      
+      - name: Get Flutter packages
+        script: |
+          flutter packages pub get
+      
+      - name: Build APK
+        script: |
+          flutter build apk --release
+    
+    artifacts:
+      - build/app/outputs/flutter-apk/app-release.apk
+    
+    publishing:
+      email:
+        recipients:
+          - 806454398@qq.com
