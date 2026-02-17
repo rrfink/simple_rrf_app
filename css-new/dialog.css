@@ -1,0 +1,134 @@
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.dialog-overlay-show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background-color: var(--card-bg);
+    border-radius: var(--border-radius-lg);
+    padding: 24px;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.dialog-show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.dialog-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.dialog-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.dialog-info .dialog-icon {
+    color: var(--info-color);
+}
+
+.dialog-success .dialog-icon {
+    color: var(--success-color);
+}
+
+.dialog-warning .dialog-icon {
+    color: var(--warning-color);
+}
+
+.dialog-error .dialog-icon {
+    color: var(--error-color);
+}
+
+.dialog-confirm .dialog-icon {
+    color: var(--primary-color);
+}
+
+.dialog-title {
+    flex: 1;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.dialog-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-light);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-sm);
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+}
+
+.dialog-close-btn:hover {
+    background-color: var(--bg-dark);
+    color: var(--text-color);
+}
+
+.dialog-body {
+    margin-bottom: 20px;
+}
+
+.dialog-message {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.dialog-footer {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+}
+
+@media (max-width: 768px) {
+    .dialog-content {
+        padding: 20px;
+        max-width: calc(100% - 40px);
+    }
+
+    .dialog-header {
+        margin-bottom: 12px;
+    }
+
+    .dialog-body {
+        margin-bottom: 16px;
+    }
+}
